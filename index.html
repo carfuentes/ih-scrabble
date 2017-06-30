@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/jquery-ui.min.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great|Pacifico" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Kranky" rel="stylesheet">
@@ -13,7 +15,7 @@
   </head>
   <body>
 
-    <div class="background-darkener">
+    <div class="background-darkener nice">
     <div class="popup-p1">
       <div class="p1">
 
@@ -21,18 +23,32 @@
           <img src="img/like.gif" class=like alt="">
         <div class="scoreboard">That's <span class="sum-points">0</span> points!</div>
 
+      </div>
+      </div>
     </div>
   </div>
+  <div class="background-darkener win">
+    <div class="popup-p1">
+      <div class="p1">
+
+        <div class="avatar">
+      <img src="img/win.gif" class=like alt="">
+      <div class="scoreboard"> <span class=winner>You </span> won: <span class="sum-points">0</span> points! <a href="index.html"> Start again!</a></div>
+
+
+  </div>
 </div>
+</div>
+
       </div>
 
-      <div class="background-darkener-try">
+      <div class="background-darkener try">
       <div class="popup-p1">
         <div class="p1">
 
           <div class="avatar">
             <img src="img/tryagain.gif" class=tries alt="">
-          <div class="scoreboard">Try again! Just <span class=count>3 </span> more tries.</div>
+          <div class="tries scoreboard">Try again! Just <span class=count>3 </span> more.</div>
 
       </div>
     </div>
@@ -73,15 +89,20 @@
             <button type="button" class="btn btn-outline-warning new block">More <img src="img/A.png" alt="" class="A-img"></button>
           </div>
         </div>
+
       </div>
+
       </div>
+
       </div>
+
     <div class="col-sm-6">
       <div class="board"></div>
 
 
     </div>
     <div class="col-2">
+      <div class="erase"><img class="erase" src="img/goma.png" alt="" /></div>
       <div class="tiles-container">
       <div class="tiles"></div>
     </div>

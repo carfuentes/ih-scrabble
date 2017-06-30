@@ -146,8 +146,27 @@
   display:block;
   cursor:pointer;
 }
+
+.erase {
+  width:5rem;
+  cursor:pointer;
+
+
+}
+
+a {
+  text-decoration: none;
+  color: red;
+  font-family: 'Luckiest Guy', cursive;
+}
+
+
 .like {
   width:9.375rem;
+
+}
+
+.erase:hover {
 
 }
 .A-img {
@@ -193,7 +212,6 @@ transform: translate(-50%, -50%);
 
 }
 
-.background-darkener-try,
 .background-darkener{
     background: #000;
     display: none;

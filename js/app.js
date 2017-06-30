@@ -1,5 +1,5 @@
 var board=[
-["TW", "n", "n", "n", "n", "n", "n", "n","n", "n", "n", "n","n", "n", "n"],
+["n", "n", "n", "n", "n", "n", "n", "n","n", "n", "n", "n","n", "n", "n"],
 ["n", "n", "n", "n", "n", "n", "n", "n","n", "n", "n", "n","n", "n", "n"],
 ["n", "n", "n", "n", "n", "n", "n", "n","n", "n", "n", "n","n", "n", "n"],
 ["n", "n", "n", "n", "n", "n", "n", "n","n", "n", "n", "n","n", "n", "n"],
@@ -81,7 +81,8 @@ Game.prototype.getPoints= function(stringWord) {
   var totalPoints=0;
   stringWord.toUpperCase().split("").forEach(function(el) {
     totalPoints+= that.abc.letters.filter(function(letterObj)
-    {return letterObj.id===el;})[0].points;
+    {
+      return letterObj.id===el;})[0].points;
   });
   return totalPoints;};
 
@@ -177,7 +178,7 @@ function Word() {
   this.isWordInDict= function() {
     var word=this.getWholeWord();
     var wordInDict= allWords.find(function(element){
-      return element === word;
+      return (element === word || word === reverseString(element));
     });
     return wordInDict;
   };
@@ -236,6 +237,11 @@ function Player (name,turn,selector) {
 
 
 //FUNCIONES Y VARIABLES
+
+function reverseString(str) {
+    return str.split( '' ).reverse().join( '' );
+}
+
 function clearWrongTile(row,col){
   $("[data-row="+row+"][data-col="+col+"]").removeClass("letter-in-board");
   $("[data-row="+row+"][data-col="+col+"]").children().appendTo('.tiles').addClass("tile");
@@ -314,6 +320,8 @@ function justAdjToMyWords() {
 
 }
 
+
+
 function intersectWords (dropObj) {
   var myLastItemRow=parseInt(dropObj.attr("data-row"));
   var myLastItemCol=parseInt(dropObj.attr("data-col"));
@@ -324,16 +332,18 @@ function intersectWords (dropObj) {
     myWord.coord.forEach(function(letter) {
       if (myLastItemRow === letter.row) {
         word.position.push(letter);
-        justMyRowDroppable(myLastItemRow, myLastItemCol);
+        return justMyRowDroppable(myLastItemRow, myLastItemCol);
+
 
       } else if (myLastItemCol === letter.col) {
         word.position.push(letter);
-        justMyColDroppable(myLastItemRow, myLastItemCol);
+        return justMyColDroppable(myLastItemRow, myLastItemCol);
       }
 
     });
   });
   word.position=_.uniqWith(word.position, _.isEqual);
+
 }
 
 var game= new Game(new Letters());
@@ -362,10 +372,8 @@ function handleDrag(event,ui){
 }
 
 function changeBlock() {
-  $(".player1 .start").toggleClass("block");
-  $(".player1 .new").toggleClass("block");
-  $(".player2 .start").toggleClass("block");
-  $(".player2 .new").toggleClass("block");
+  $(".start").toggleClass("block");
+  $(".new").toggleClass("block");
 }
 
 function changeFade(player, enemy) {
@@ -373,42 +381,51 @@ function changeFade(player, enemy) {
   $(enemy).fadeTo(1,1);
 }
 
+function popUp (div) {
+  $(div).fadeIn(1000);
+  var intervalId= setTimeout(function () {
+    $(div).fadeOut(1000);
+  }, 3000);
+}
+
 function goodJob(player) {
-  $(".p1 .sum-points").text(player.points);
-  $(".background-darkener").fadeIn(1000);
-  var intervalId= setTimeout(function () {
-    $(".background-darkener").fadeOut(1000);
-  }, 3000);
+  $(".p1 .sum-points").text(game.getPoints(word.getWholeWord()));
+  popUp (".nice");
 
 }
 
-function tryAgain(counter) {
-  if(counter===0) { changeBlock();}
+function tryAgain(player,enemy) {
+  player.turn--;
+  if(player.turn===0) {
+    changeBlock();
+    changeFade(player.selector,enemy.selector);
+    $(".tries").text("Sorry! Better luck next time!");
+    popUp(".try");
+  }
   else {
-  $(".count").text(counter);
-  $(".background-darkener-try").fadeIn(1000);
-  var intervalId= setTimeout(function () {
-    $(".background-darkener-try").fadeOut(1000);
-  }, 3000);
+  $(".count").text(player.turn);
+  popUp(".try");
 }
 
 }
 
-function win (player) {
-  $(".background-darkener").empty();
-  $(player.selector).appendTo($(".background-darkener"));
-  $(player.selector).addClass('popup-p1');
-  $(player.selector+" button").remove();
-  $("<div class:\"win\">You win!</div>").appendTo(player.selector);
-  $("<button type=\"button\" class=\"btn btn-outline-info reload\">New game?</button>").appendTo(player.selector);
-  $(".background-darkener").fadeOut();
-
+function win (player,enemy) {
+    $(".win").fadeIn(1000);
+    $(".win .sum-points").text(player.points);
+    if (player.points > enemy.points) {
+     $(".win .like").after("<img src=\"img/"+player.name+".png\" >");
+      $(".winner").text(player.name);
+    } else if(enemy.points > player.points) {
+      $(".win .like").after("<img src=\"img/"+enemy.name+".png\" >");
+      $(".winner").text(enemy.name);
+    } else {
+    }
 }
 
 
 function handleClick (player,enemy,counter) {
   if(word.isWordInDict()) {
-    counter=3;
+    player.turn=3;
     changeBlock();
     changeFade(player.selector,enemy.selector);
     player.points+=game.getPoints(word.getWholeWord());
@@ -416,15 +433,18 @@ function handleClick (player,enemy,counter) {
 
     word.addWordToTheBoard();
 
+    if (game.counTiles()===100) {
+    win(player,enemy);
+    } else {
     goodJob(player);
+    }
 
     word=new Word();
     game.clearTiles();
     game.generateTiles();
 
   } else {
-    counter--;
-    tryAgain(counter);
+    tryAgain(player,enemy);
     word.removeOftheBoard();
     word=new Word();
 
@@ -443,8 +463,8 @@ $(document).ready(function() {
 game.generateBoard();
 game.generateTiles();
 
-var player1= new Player("player1",true,".player1");
-var player2= new Player("player2",false,".player2");
+var player1= new Player("player1",3,".player1");
+var player2= new Player("player2",3,".player2");
 
 $(".new").on("click",function(){
 game.clearTiles();
@@ -453,24 +473,32 @@ game.generateTiles();
 });
 
 
-
 $(".player1 .start").on("click",function(){
-    var counter=3;
-    handleClick(player1,player2,counter);
+    handleClick(player1,player2);
+
 
   });
 
 
 
 $(".player2 .start").on("click",function(){
-      var counter=3;
-      handleClick(player2,player1,counter);
+      handleClick(player2,player1);
 
 });
 
-$('.reload').click(function() {
+$('.reload').on("click",function() {
     location.reload(true);
 });
+
+
+$(".erase").on("click",function(){
+    word.removeOftheBoard();
+    word=new Word();
+
+});
+
+
+
 
 
 });
