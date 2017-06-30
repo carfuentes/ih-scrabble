@@ -1,0 +1,207 @@
+.title-container {
+  width:100%;
+}
+.title {
+  width:80%;
+  margin: auto;
+  text-align:  center;
+  font-size: 3rem;
+  font-family: 'Kranky', cursive;
+}
+
+.game-container {
+  width:100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.game-container::after {
+  content: "";
+  background-image: url("../img/background2.png");
+  background-size: auto;
+  background-repeat: repeat;
+  opacity: 0.2;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+.players-container {
+  margin:3.125 auto;
+  height: 37.5rem;
+}
+
+.p1,
+.player1,
+.player2 {
+  width: 80%;
+  height: auto;
+  background-color: white;
+  margin:1.25rem;
+  box-shadow: 0 0 0.0625rem #3d4044;
+  border-radius: 0.625rem;
+}
+
+.block {
+  pointer-events: none;
+}
+
+.scoreboard {
+  font-family: 'Love Ya Like A Sister', cursive;
+  font-size: 1.25rem;
+  display:inline-block;
+  margin: auto;
+}
+
+.player-stuff {
+  width:80%;
+  margin:  0.625rem auto;
+  margin-bottom:0.625rem;
+}
+
+.board {
+  height: 34.25rem;
+  margin-top:  1.875rem;
+  margin-right: 0;
+  width: 34.25rem;
+  background-color:  #f9e8ca;
+  border:0.25rem solid white;
+  box-shadow: 0 0 0.25rem #3d4044;
+
+}
+
+.cell {
+  float: left;
+  height:  2.25rem;
+  width:  2.25rem;
+  box-sizing: border-box;
+  border: 0.025rem solid rgba(255, 255, 255, 0.6);
+}
+
+.letter-in-board {
+  position: relative;
+  box-sizing: border-box;
+  border:  0.25rem solid rgba(255, 255, 255, 0.5);
+  border-radius: 0.625rem;
+  font-size: 1.25rem;
+  background-color: white;
+  text-align:center;
+  box-shadow: 0 0 0.0625rem #3d4044;
+}
+
+.point-in-board {
+  position: absolute;
+  bottom:0;
+  font-size: 0.625rem;
+}
+
+.tiles-container {
+  width:100%;
+  height: 36.38rem;
+  padding:0.0625rem;
+}
+
+.tiles {
+  margin: 1.875rem auto;
+  height:36.38rem;
+  width: 5.75rem;
+  background-color: #f9e8ca;
+  border:0.25rem solid white;
+
+}
+.tile {
+  cursor:move;
+  float: left;
+  position: relative;
+  width:5rem;
+  height:5rem;
+  margin: 0.0625rem;
+  box-sizing: border-box;
+  border: 0.25rem solid rgba(255, 255, 255, 0.5);
+  border-radius:  0.625rem;
+  font-size: 2.813rem;
+  background-color: white;
+  text-align:center;
+  box-shadow: 0 0 0.0625rem #3d4044;
+}
+
+.point {
+  position: absolute;
+  bottom:0;
+  font-size:  0.9375rem;
+
+}
+
+.btn-container {
+  width:100%;
+  height: 11.25rem;
+  padding:0.0625rem;
+
+}
+
+.btn {
+  display:block;
+  cursor:pointer;
+}
+.like {
+  width:9.375rem;
+
+}
+.A-img {
+  width:1.688rem;
+}
+.flame-img {
+  width:1.25rem;
+}
+.tries {
+  width:10rem;
+  margin: auto;
+}
+
+.popup-p1 {
+display:inherit;
+position: fixed;
+top: 50%;
+left: 50%;
+webkit-transform: translate(-50%, -50%);
+moz-transform: translate(-50%, -50%);
+ms-transform: translate(-50%, -50%);
+transform: translate(-50%, -50%);
+}
+
+.popup-p1 .scoreboard {
+  font-family: 'Pacifico', cursive;
+  width:100%;
+  font-size:  1.875rem;
+  text-align: center;
+
+}
+.popup-p1 .avatar {
+  width:75%;
+  padding: 1.25rem;
+  margin: auto;
+  border-radius:  0.625rem;
+
+}
+
+.popup-p1 .sum-points {
+  font-family: 'Fredericka the Great', cursive;
+
+
+}
+
+.background-darkener-try,
+.background-darkener{
+    background: #000;
+    display: none;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: rgba(0,0,0,0.5);
+}

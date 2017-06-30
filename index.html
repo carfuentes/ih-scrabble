@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/jquery-ui.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great|Pacifico" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Kranky" rel="stylesheet">
+    <title>Scrabble</title>
+  </head>
+  <body>
+
+    <div class="background-darkener">
+    <div class="popup-p1">
+      <div class="p1">
+
+        <div class="avatar">
+          <img src="img/like.gif" class=like alt="">
+        <div class="scoreboard">That's <span class="sum-points">0</span> points!</div>
+
+    </div>
+  </div>
+</div>
+      </div>
+
+      <div class="background-darkener-try">
+      <div class="popup-p1">
+        <div class="p1">
+
+          <div class="avatar">
+            <img src="img/tryagain.gif" class=tries alt="">
+          <div class="scoreboard">Try again! Just <span class=count>3 </span> more tries.</div>
+
+      </div>
+    </div>
+  </div>
+        </div>
+
+
+    <div class="game-container">
+      <div class="title-container">
+        <div class="title"> WORDS WITH FRIENDS</div>;
+      </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="players-container">
+        <div class="row">
+
+          <div class="player1">
+            <div class="player-stuff">
+              <div class="avatar">
+            <img src="img/player1.png" alt="">
+            <div class="scoreboard">Points: <span class="sum-points">0</span></div>
+            </div>
+            <button type="button" class="btn btn-outline-danger start">Fire <img src="img/flame.png" alt="" class="flame-img"></button>
+              <button type="button" class="btn btn-outline-warning new">More <img src="img/A.png" alt="" class="A-img"></button>
+        </div>
+        </div>
+      </div>
+      <div class="row"></div>
+      <div class="row">
+
+          <div class="player2" style="opacity:0.4;">
+            <div class="player-stuff">
+                <div class="avatar">
+                <img src="img/player2.png" alt="">
+                <div class="scoreboard">Points: <span class="sum-points">0</span></div>
+              </div>
+          <button type="button" class="btn btn-outline-danger start block ">Fire <img src="img/flame.png" alt="" class="flame-img"></button>
+            <button type="button" class="btn btn-outline-warning new block">More <img src="img/A.png" alt="" class="A-img"></button>
+          </div>
+        </div>
+      </div>
+      </div>
+      </div>
+    <div class="col-sm-6">
+      <div class="board"></div>
+
+
+    </div>
+    <div class="col-2">
+      <div class="tiles-container">
+      <div class="tiles"></div>
+    </div>
+
+
+    </div>
+  </div>
+    <div class="btn-container">
+
+    </div>
+    </div>
+  </body>
+  <script src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js"></script>
+  <script src="js/dictionary.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="js/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
+</html>
